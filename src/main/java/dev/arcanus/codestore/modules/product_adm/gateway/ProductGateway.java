@@ -4,6 +4,6 @@ import dev.arcanus.codestore.modules.product_adm.domain.entity.Product;
 import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
 
 public interface ProductGateway {
-    void add(Product product);
+    Product add(Product product);
     Product find(Id id);
 }

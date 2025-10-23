@@ -13,10 +13,10 @@ public abstract class BaseEntityWithTime extends BaseEntity {
     public BaseEntityWithTime() {
     }
 
-    public BaseEntityWithTime(Id id, Instant createdAt, Instant updatedAt) {
+    public BaseEntityWithTime(Id id) {
         super(id);
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
     }
     
     public Instant getCreatedAt() {
