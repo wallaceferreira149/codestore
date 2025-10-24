@@ -1,13 +1,16 @@
-package dev.arcanus.codestore.modules.product_adm.use_case.add_product;
+package dev.arcanus.codestore.modules.product_adm.useCases.addProduct;
 
 import dev.arcanus.codestore.modules.product_adm.domain.entity.Product;
 import dev.arcanus.codestore.modules.product_adm.gateway.ProductGateway;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AddProductUseCase {
     
     private final ProductGateway productRepository;
 
     public AddProductUseCase(ProductGateway productRepository) {
+
         this.productRepository = productRepository;
     }
 

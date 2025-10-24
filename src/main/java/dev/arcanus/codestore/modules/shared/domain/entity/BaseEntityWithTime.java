@@ -18,6 +18,12 @@ public abstract class BaseEntityWithTime extends BaseEntity {
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
     }
+
+    public BaseEntityWithTime(Id id, Instant createdAt, Instant updatedAt) {
+        super(id);
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
     
     public Instant getCreatedAt() {
         return this.createdAt;

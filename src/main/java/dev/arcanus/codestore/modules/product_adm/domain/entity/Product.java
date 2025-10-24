@@ -4,6 +4,8 @@ import dev.arcanus.codestore.modules.shared.domain.entity.AggregateRoot;
 import dev.arcanus.codestore.modules.shared.domain.entity.BaseEntityWithTime;
 import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
 
+import java.time.Instant;
+
 public class Product extends BaseEntityWithTime implements AggregateRoot{
     
     private String name;
@@ -15,6 +17,14 @@ public class Product extends BaseEntityWithTime implements AggregateRoot{
 
     public Product(Id id, String name, String description, Double price, Integer stock) {
         super(id);
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public Product(Id id, Instant createdAt, Instant updatedAt, String name, String description, Double price, Integer stock) {
+        super(id, createdAt, updatedAt);
         this.name = name;
         this.description = description;
         this.price = price;

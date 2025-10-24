@@ -1,4 +1,4 @@
-package dev.arcanus.codestore.modules.product_adm.use_case.add_product;
+package dev.arcanus.codestore.modules.product_adm.useCases.addProduct;
 
 public record AddProductDTO(
     String name,

@@ -1,4 +1,4 @@
-package dev.arcanus.codestore.modules.product_adm.use_case.add_product;
+package dev.arcanus.codestore.modules.product_adm.useCases.addProduct;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,7 +18,7 @@ import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
 
 // Anotação essencial para inicializar os Mocks antes de cada teste
 @ExtendWith(MockitoExtension.class)
-public class AddProductUseCaseTest {
+class AddProductUseCaseTest {
 
     // 2. A classe a ser testada, injetando as dependências mockadas
     @InjectMocks
@@ -39,7 +39,7 @@ public class AddProductUseCaseTest {
 
     @Test
     @DisplayName("Deve adicionar um novo produto com sucesso")
-    public void shouldReturnAddedProductDTOWhenAddProductDTOHasCorrectData() {
+    void shouldReturnAddedProductDTOWhenAddProductDTOHasCorrectData() {
         when(repository.add(any(Product.class))).thenReturn(productEntity);
         var result = useCase.execute(dto);
         
