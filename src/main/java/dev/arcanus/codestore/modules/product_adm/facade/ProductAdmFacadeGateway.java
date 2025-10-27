@@ -4,4 +4,5 @@ public interface ProductAdmFacadeGateway {
 
     Long addProduct(AddProductFacadeInputDTO input);
     CheckStockFacadeOutputDTO checkStock(Long productId);
+    ListAllProductsFacadeDTO listAllProducts();
 }

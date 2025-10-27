@@ -2,6 +2,8 @@ package dev.arcanus.codestore.modules.product_adm.repositories;
 
 import dev.arcanus.codestore.modules.shared.repository.BaseModel;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,11 +23,11 @@ public class ProductModel extends BaseModel {
 
     private Integer stock;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     @Column(nullable = false)
     private Instant updatedAt;
 

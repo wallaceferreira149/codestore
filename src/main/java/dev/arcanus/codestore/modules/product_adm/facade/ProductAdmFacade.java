@@ -5,19 +5,11 @@ import dev.arcanus.codestore.modules.product_adm.useCases.addProduct.AddProductU
 import dev.arcanus.codestore.modules.product_adm.useCases.addProduct.AddedProductDTO;
 import dev.arcanus.codestore.modules.product_adm.useCases.checkStock.CheckStockUseCase;
 import dev.arcanus.codestore.modules.product_adm.useCases.checkStock.CheckStockUseCaseOutputDto;
+import dev.arcanus.codestore.modules.product_adm.useCases.listAllProducts.ListAllProductsUseCase;
+import dev.arcanus.codestore.modules.product_adm.useCases.listAllProducts.ProductListDto;
 
-public class ProductAdmFacade implements ProductAdmFacadeGateway {
-
-    private final AddProductUseCase addProductUseCase;
-    private final CheckStockUseCase checkStockUseCase;
-
-    public ProductAdmFacade(
-            AddProductUseCase addProductUseCase,
-            CheckStockUseCase checkStockUseCase
-    ) {
-        this.addProductUseCase = addProductUseCase;
-        this.checkStockUseCase = checkStockUseCase;
-    }
+public record ProductAdmFacade(AddProductUseCase addProductUseCase, CheckStockUseCase checkStockUseCase,
+                               ListAllProductsUseCase listAllProductsUseCase) implements ProductAdmFacadeGateway {
 
     @Override
     public Long addProduct(AddProductFacadeInputDTO input) {
@@ -27,17 +19,23 @@ public class ProductAdmFacade implements ProductAdmFacadeGateway {
                 input.price(),
                 input.stock()
         );
-        AddedProductDTO addedProduct = (AddedProductDTO) this.addProductUseCase.execute(dto);
+        AddedProductDTO addedProduct = this.addProductUseCase.execute(dto);
 
         return addedProduct.id();
     }
 
     @Override
     public CheckStockFacadeOutputDTO checkStock(Long productId) {
-        CheckStockUseCaseOutputDto outputUseCaseDto = (CheckStockUseCaseOutputDto) this.checkStockUseCase.execute(productId);
+        CheckStockUseCaseOutputDto outputUseCaseDto = this.checkStockUseCase.execute(productId);
         return new CheckStockFacadeOutputDTO(
                 outputUseCaseDto.productId(),
                 outputUseCaseDto.stock()
         );
+    }
+
+    @Override
+    public ListAllProductsFacadeDTO listAllProducts() {
+        ProductListDto products = this.listAllProductsUseCase.execute();
+        return new ListAllProductsFacadeDTO(products.products());
     }
 }

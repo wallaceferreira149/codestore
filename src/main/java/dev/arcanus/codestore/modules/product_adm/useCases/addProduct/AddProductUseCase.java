@@ -27,7 +27,7 @@ public class AddProductUseCase {
         Product savedProduct = productRepository.add(product);
 
         return new AddedProductDTO(
-            savedProduct.getId().getId(),
+            savedProduct.getId(),
             savedProduct.getName(),
             savedProduct.getDescription(),
             savedProduct.getPrice(),

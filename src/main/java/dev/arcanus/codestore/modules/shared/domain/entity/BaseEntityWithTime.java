@@ -3,8 +3,6 @@ package dev.arcanus.codestore.modules.shared.domain.entity;
 
 import java.time.Instant;
 
-import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
-
 public abstract class BaseEntityWithTime extends BaseEntity {
     
     private Instant createdAt;
@@ -13,16 +11,16 @@ public abstract class BaseEntityWithTime extends BaseEntity {
     public BaseEntityWithTime() {
     }
 
-    public BaseEntityWithTime(Id id) {
+    public BaseEntityWithTime(Long id) {
         super(id);
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
     }
 
-    public BaseEntityWithTime(Id id, Instant createdAt, Instant updatedAt) {
+    public BaseEntityWithTime(Long id, Instant createdAt, Instant updatedAt) {
         super(id);
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
     }
     
     public Instant getCreatedAt() {

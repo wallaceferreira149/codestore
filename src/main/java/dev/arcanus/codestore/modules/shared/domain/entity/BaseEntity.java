@@ -4,20 +4,20 @@ import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
 
 public abstract class BaseEntity {
     
-    private Id id;
+    private Long id;
 
     public BaseEntity() {
     }
 
-    public BaseEntity(Id id) {
+    public BaseEntity(Long id) {
         this.id = id;
     }
 
-    public Id getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(Id id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

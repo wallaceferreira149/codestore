@@ -6,7 +6,8 @@ import dev.arcanus.codestore.modules.product_adm.useCases.addProduct.AddProductU
 import dev.arcanus.codestore.modules.product_adm.useCases.addProduct.AddedProductDTO;
 import dev.arcanus.codestore.modules.product_adm.useCases.checkStock.CheckStockUseCase;
 import dev.arcanus.codestore.modules.product_adm.useCases.checkStock.CheckStockUseCaseOutputDto;
-import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
+import dev.arcanus.codestore.modules.product_adm.useCases.listAllProducts.ListAllProductsUseCase;
+import dev.arcanus.codestore.modules.product_adm.useCases.listAllProducts.ProductListDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,19 +17,23 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductAdmFacadeTest {
+class ProductAdmFacadeTest {
 
     @Mock
     private AddProductUseCase addProductUseCase;
 
     @Mock
     private CheckStockUseCase checkStockUseCase;
+
+    @Mock
+    private ListAllProductsUseCase listAllProductsUseCase;
 
     @InjectMocks
     private ProductAdmFacade productAdmFacade;
@@ -55,7 +60,7 @@ public class ProductAdmFacadeTest {
         );
 
         productEntity = new Product(
-                new Id(1L),
+                1L,
                 productDto.name(),
                 productDto.description(),
                 productDto.price(),
@@ -78,7 +83,7 @@ public class ProductAdmFacadeTest {
     void shoudCallUseCaseAndSaveProductWhenAddProductFacedeIsCalled() {
 
         Product productCreated = new Product(
-                new Id(1L),
+                1L,
                 productEntity.getCreatedAt(),
                 productEntity.getUpdatedAt(),
                 productEntity.getName(),
@@ -92,7 +97,7 @@ public class ProductAdmFacadeTest {
         Long productAddedFromFacade = productAdmFacade.addProduct(inputFacadeDTO);
 
         assert(productAddedFromFacade.equals(addedProductDTO.id()));
-        assert(productAddedFromFacade.equals(productCreated.getId().getId()));
+        assert(productAddedFromFacade.equals(productCreated.getId()));
         assertNotNull(productAddedFromFacade);
     }
 
@@ -107,5 +112,22 @@ public class ProductAdmFacadeTest {
         CheckStockFacadeOutputDTO stockOutput = productAdmFacade.checkStock(1L);
         assertNotNull(stockOutput);
         assertEquals(1L, stockOutput.productId());
+    }
+
+    @Test
+    @DisplayName("Deve retornar uma lista de produtos através da facade quando o método listAllProducts for chamado")
+    void shouldReturnListOfProductsWhenListAllProductsIsCalled() {
+        Product product1 = new Product(1L, "Produto 1", "Descrição 1", 10.0, 100);
+        Product product2 = new Product(2L, "Produto 2", "Descrição 2", 20.0, 200);
+        List<Product> products = List.of(product1, product2);
+
+        when(listAllProductsUseCase.execute()).thenReturn(new ProductListDto(products));
+
+        ListAllProductsFacadeDTO productsFacadeDTO = productAdmFacade.listAllProducts();
+
+        assertNotNull(productsFacadeDTO);
+        assertEquals(productsFacadeDTO.products().size(), products.size());
+        assertEquals(products.get(0).getName(), productsFacadeDTO.products().get(0).getName());
+        assertEquals(products.get(1).getName(), productsFacadeDTO.products().get(1).getName());
     }
 }

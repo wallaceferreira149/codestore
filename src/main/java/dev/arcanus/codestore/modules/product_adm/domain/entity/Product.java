@@ -15,7 +15,7 @@ public class Product extends BaseEntityWithTime implements AggregateRoot{
 
     public Product() {}
 
-    public Product(Id id, String name, String description, Double price, Integer stock) {
+    public Product(Long id, String name, String description, Double price, Integer stock) {
         super(id);
         this.name = name;
         this.description = description;
@@ -23,7 +23,7 @@ public class Product extends BaseEntityWithTime implements AggregateRoot{
         this.stock = stock;
     }
 
-    public Product(Id id, Instant createdAt, Instant updatedAt, String name, String description, Double price, Integer stock) {
+    public Product(Long id, Instant createdAt, Instant updatedAt, String name, String description, Double price, Integer stock) {
         super(id, createdAt, updatedAt);
         this.name = name;
         this.description = description;

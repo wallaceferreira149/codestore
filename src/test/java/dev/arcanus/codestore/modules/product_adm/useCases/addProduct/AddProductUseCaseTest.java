@@ -14,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import dev.arcanus.codestore.modules.product_adm.domain.entity.Product;
 import dev.arcanus.codestore.modules.product_adm.gateway.ProductGateway;
-import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
 
 // Anotação essencial para inicializar os Mocks antes de cada teste
 @ExtendWith(MockitoExtension.class)
@@ -34,7 +33,7 @@ class AddProductUseCaseTest {
     @BeforeEach
     void setUp() {
         dto = new AddProductDTO("Notebook", "High-end gaming laptop", 1500.00, 10);
-        productEntity = new Product(new Id(1L), "Notebook", "High-end gaming laptop", 1500.00, 10);
+        productEntity = new Product(1L, "Notebook", "High-end gaming laptop", 1500.00, 10);
     }
 
     @Test
@@ -44,7 +43,7 @@ class AddProductUseCaseTest {
         var result = useCase.execute(dto);
         
         assertNotNull(result);
-        assertEquals(productEntity.getId().getId(), result.id());
+        assertEquals(productEntity.getId(), result.id());
     }
 
     

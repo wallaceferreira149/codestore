@@ -6,6 +6,8 @@ import dev.arcanus.codestore.modules.shared.domain.valueobject.Id;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ProductRepository implements ProductGateway {
 
@@ -26,7 +28,7 @@ public class ProductRepository implements ProductGateway {
         ProductModel savedModel = this.jpaRepository.save(model);
 
         return new Product(
-                new Id(model.getId()),
+                model.getId(),
                 model.getCreatedAt(),
                 model.getUpdatedAt(),
                 model.getName(),
@@ -38,10 +40,10 @@ public class ProductRepository implements ProductGateway {
     }
 
     @Override
-    public Product find(Id id) {
-        ProductModel model = this.jpaRepository.findById(id.getId()).orElseThrow();
+    public Product find(Long id) {
+        ProductModel model = this.jpaRepository.findById(id).orElseThrow();
         return new Product(
-            new Id(model.getId()),
+            model.getId(),
             model.getCreatedAt(),
             model.getUpdatedAt(),
             model.getName(),
@@ -49,5 +51,19 @@ public class ProductRepository implements ProductGateway {
             model.getPrice(),
             model.getStock()
         );
+    }
+
+    @Override
+    public List<Product> listAll() {
+        List<ProductModel> productModels = this.jpaRepository.findAll();
+        return productModels.stream().map(model -> new Product(
+            model.getId(),
+            model.getCreatedAt(),
+            model.getUpdatedAt(),
+            model.getName(),
+            model.getDescription(),
+            model.getPrice(),
+            model.getStock()
+        )).toList();
     }
 }

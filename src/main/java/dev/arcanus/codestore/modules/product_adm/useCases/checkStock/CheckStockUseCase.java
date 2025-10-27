@@ -15,8 +15,8 @@ public class CheckStockUseCase {
     }
 
     public CheckStockUseCaseOutputDto execute(Long productId) {
-        Product product = productRepository.find(new Id(productId));
-        return new CheckStockUseCaseOutputDto(product.getId().getId(), product.getStock());
+        Product product = productRepository.find(productId);
+        return new CheckStockUseCaseOutputDto(product.getId(), product.getStock());
     }
 
 }

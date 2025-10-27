@@ -15,14 +15,14 @@ public class FindProductUseCase {
     }
 
     public FindedProductDTO execute(Long id) {
-        Product product = this.repository.find(new Id(id));
+        Product product = this.repository.find(id);
 
         if (product == null) {
             throw new Error("Product not found");
         }
 
         return new FindedProductDTO(
-            product.getId().getId(),
+            product.getId(),
             product.getName(),
             product.getDescription(),
             product.getPrice(),
