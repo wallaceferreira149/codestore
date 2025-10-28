@@ -7,7 +7,9 @@ import dev.arcanus.codestore.modules.product_adm.useCases.checkStock.CheckStockU
 import dev.arcanus.codestore.modules.product_adm.useCases.checkStock.CheckStockUseCaseOutputDto;
 import dev.arcanus.codestore.modules.product_adm.useCases.listAllProducts.ListAllProductsUseCase;
 import dev.arcanus.codestore.modules.product_adm.useCases.listAllProducts.ProductListDto;
+import org.springframework.stereotype.Service;
 
+@Service
 public record ProductAdmFacade(AddProductUseCase addProductUseCase, CheckStockUseCase checkStockUseCase,
                                ListAllProductsUseCase listAllProductsUseCase) implements ProductAdmFacadeGateway {
 

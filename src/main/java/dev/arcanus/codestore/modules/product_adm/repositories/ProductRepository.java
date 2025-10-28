@@ -66,4 +66,8 @@ public class ProductRepository implements ProductGateway {
             model.getStock()
         )).toList();
     }
+
+    public void clear() {
+        this.jpaRepository.deleteAll();
+    }
 }
