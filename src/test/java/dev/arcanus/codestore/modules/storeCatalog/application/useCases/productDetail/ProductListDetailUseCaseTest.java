@@ -18,7 +18,7 @@
 //class ProductListDetailUseCaseTest {
 //
 //    @Mock
-//    private ProductRepositoryImpl productRepository;
+//    private  productRepository;
 //
 //    @InjectMocks
 //    private ProductListDetailUseCase productDetailUseCase;

@@ -1,13 +1,13 @@
 //package dev.arcanus.codestore.modules.storeCatalog.application.repositories;
 //
 //import dev.arcanus.codestore.modules.storeCatalog.domain.entities.Product;
-//import dev.arcanus.codestore.modules.storeCatalog.domain.repository.ProductGateway;
+//import dev.arcanus.codestore.modules.storeCatalog.domain.repository.ProductRepository;
 //import org.springframework.stereotype.Repository;
 //
 //import java.util.List;
 //
 //@Repository
-//public class ProductRepositoryImpl implements ProductGateway {
+//public class ProductRepositoryImpl implements ProductRepository {
 //
 //    private final ProductJpaRepository productJpaRepository;
 //

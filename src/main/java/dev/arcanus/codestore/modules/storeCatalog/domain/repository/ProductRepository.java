@@ -4,8 +4,9 @@ import dev.arcanus.codestore.modules.storeCatalog.domain.entities.Product;
 
 import java.util.List;
 
-public interface ProductGateway {
+public interface ProductRepository {
 
     List<Product> findAll();
     Product productDetail(Long id);
+
 }
