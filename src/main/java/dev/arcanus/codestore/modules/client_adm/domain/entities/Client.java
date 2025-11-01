@@ -7,11 +7,9 @@ import jakarta.validation.constraints.NotBlank;
 
 public class Client extends BaseEntity {
 
-    @NotBlank(message = "Name cannot be blank")
     private String name;
 
-    @Email(message = "Email should be valid format")
-    @NotBlank(message = "Email cannot be blank")
+
     private String email;
 
     private Address address;

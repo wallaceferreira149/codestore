@@ -8,7 +8,7 @@ public class ClientMapper {
 
     public static ClientModel entityToModel(Client client) {
         return new ClientModel(
-                client.getId(),
+                null,
                 client.getName(),
                 client.getEmail(),
                 client.getAddress().street(),
@@ -31,7 +31,7 @@ public class ClientMapper {
         );
 
         return new Client(
-                null,
+                client.getId(),
                 client.getName(),
                 client.getEmail(),
                 address

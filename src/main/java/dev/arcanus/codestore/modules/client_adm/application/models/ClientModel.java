@@ -1,15 +1,12 @@
 package dev.arcanus.codestore.modules.client_adm.application.models;
 
 import dev.arcanus.codestore.modules.client_adm.domain.entities.Client;
+import dev.arcanus.codestore.modules.shared.repository.BaseModel;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "clients")
-public class ClientModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ClientModel extends BaseModel {
 
     @Column(nullable = false)
     private String name;
@@ -28,12 +25,9 @@ public class ClientModel {
     }
 
     public ClientModel(Long id, String name, String email, String street, String number, String complement, String city, String state, String zipCode) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.email = email;
-        // Keep superclass fields in sync for Bean Validation constraints defined in Client
-//        super.setName(name);
-//        super.setEmail(email);
         this.street = street;
         this.number = number;
         this.complement = complement;
@@ -42,22 +36,12 @@ public class ClientModel {
         this.zipCode = zipCode;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-        // Keep superclass field in sync
-//        super.setName(name);
     }
 
     public String getEmail() {
@@ -66,8 +50,6 @@ public class ClientModel {
 
     public void setEmail(String email) {
         this.email = email;
-        // Keep superclass field in sync
-//        super.setEmail(email);
     }
 
     public String getStreet() {

@@ -17,6 +17,13 @@ public abstract class BaseModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public BaseModel() {
+    }
+
+    public BaseModel(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return this.id;
     }

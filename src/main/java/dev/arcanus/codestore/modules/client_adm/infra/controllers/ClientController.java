@@ -7,6 +7,7 @@ import dev.arcanus.codestore.modules.client_adm.infra.dtos.AddClientOutputDto;
 import dev.arcanus.codestore.modules.client_adm.infra.mappers.AddClientMapper;
 import dev.arcanus.codestore.modules.shared.infra.ApiResponse;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/api/clients")
+@RequestMapping(value = "/api/v${api.version}/clients")
 public class ClientController {
 
     private final CreateClientUseCase createClientUseCase;
@@ -45,7 +46,7 @@ public class ClientController {
                 createdClient.getEmail()
         );
 
-        return ResponseEntity.ok(ApiResponse.success("Client created successfully", data, uri));
+        return ResponseEntity.created(uri).body(ApiResponse.success("Client created successfully", data, uri));
 
     }
 }

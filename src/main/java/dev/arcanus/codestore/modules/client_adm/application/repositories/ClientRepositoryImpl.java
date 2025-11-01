@@ -48,4 +48,9 @@ public class ClientRepositoryImpl implements ClientRepository {
     public void delete(Long id) {
 
     }
+
+    @Override
+    public void clear() {
+        this.jpaAdapter.deleteAll();
+    }
 }
