@@ -1,9 +1,6 @@
 package dev.arcanus.codestore.modules.client_adm.application.use_cases;
 
 import dev.arcanus.codestore.modules.client_adm.domain.value_objects.Address;
-import dev.arcanus.codestore.modules.client_adm.infra.dtos.AddClientInputDto;
-import dev.arcanus.codestore.modules.client_adm.infra.dtos.AddClientOutputDto;
-import dev.arcanus.codestore.modules.client_adm.infra.mappers.AddClientMapper;
 import dev.arcanus.codestore.modules.client_adm.domain.entities.Client;
 import dev.arcanus.codestore.modules.client_adm.domain.repository.ClientRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CreateClientUseCaseTest {

@@ -16,7 +16,7 @@ public class ClientNotFoundCustomException extends CodeStoreException
         public ProblemDetail toProblemDetail() {
             ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
             problemDetail.setTitle("Client Not Found");
-            problemDetail.setDetail(detail);
+            problemDetail.setDetail(this.detail);
             return problemDetail;
         }
 }

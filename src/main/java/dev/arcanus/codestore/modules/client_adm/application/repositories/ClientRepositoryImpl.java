@@ -1,5 +1,6 @@
 package dev.arcanus.codestore.modules.client_adm.application.repositories;
 
+import dev.arcanus.codestore.modules.client_adm.domain.exceptions.ClientNotFoundCustomException;
 import dev.arcanus.codestore.modules.client_adm.infra.mappers.ClientMapper;
 import dev.arcanus.codestore.modules.client_adm.application.models.ClientModel;
 import dev.arcanus.codestore.modules.client_adm.domain.entities.Client;
@@ -7,6 +8,7 @@ import dev.arcanus.codestore.modules.client_adm.domain.repository.ClientReposito
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ClientRepositoryImpl implements ClientRepository {
@@ -26,7 +28,10 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public Client find(Long id) {
-        return null;
+        ClientModel model = this.jpaAdapter.findById(id).orElseThrow(
+                () -> new ClientNotFoundCustomException("Cliente não encontrado")
+        );
+        return ClientMapper.modelToEntity(model);
     }
 
     @Override

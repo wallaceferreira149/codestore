@@ -3,6 +3,7 @@ package dev.arcanus.codestore.modules.client_adm.infra.mappers;
 import dev.arcanus.codestore.modules.client_adm.application.models.ClientModel;
 import dev.arcanus.codestore.modules.client_adm.domain.entities.Client;
 import dev.arcanus.codestore.modules.client_adm.domain.value_objects.Address;
+import dev.arcanus.codestore.modules.client_adm.infra.dtos.ClientOutputDto;
 
 public class ClientMapper {
 
@@ -35,6 +36,14 @@ public class ClientMapper {
                 client.getName(),
                 client.getEmail(),
                 address
+        );
+    }
+
+    public static ClientOutputDto entityToOutputDto(Client client) {
+        return new ClientOutputDto(
+                client.getId(),
+                client.getName(),
+                client.getEmail()
         );
     }
 }
