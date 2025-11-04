@@ -14,5 +14,6 @@ public interface ClientRepository {
     List<Client> findAll();
     void update(Client client, Long id);
     void delete(Long id);
+    boolean isClientExists(Long id);
     void clear();
 }

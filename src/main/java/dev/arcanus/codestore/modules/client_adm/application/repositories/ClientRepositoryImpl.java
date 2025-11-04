@@ -51,7 +51,12 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public void delete(Long id) {
+        this.jpaAdapter.deleteById(id);
+    }
 
+    @Override
+    public boolean isClientExists(Long id) {
+        return this.jpaAdapter.existsById(id);
     }
 
     @Override
