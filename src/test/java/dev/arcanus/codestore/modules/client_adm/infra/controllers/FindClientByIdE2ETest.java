@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class ClientControllerE2ETest {
+class FindClientByIdE2ETest {
 
     @Autowired
     private ClientController clientController;
@@ -42,29 +42,6 @@ class ClientControllerE2ETest {
                         "12345-678"
                 )
         );
-    }
-
-    @Test
-    @DisplayName("Deve criar um novo cliente com sucesso")
-    void shouldCreateClientWhenDataIsValid() {
-
-        AddClientInputDto inputDto = new AddClientInputDto(
-                "John Doe",
-                "jhon@mail.com",
-                "Some Street",
-                "123",
-                "Apt 4",
-                "Some City",
-                "Some State",
-                "12345-678"
-        );
-
-        ResponseEntity<ApiResponse<ClientOutputDto>> response = clientController.createClient(inputDto);
-
-        assertEquals(201, response.getStatusCode().value());
-        assertNotNull(response.getBody().data());
-        assertEquals(inputDto.name(), response.getBody().data().name());
-        assertEquals(inputDto.email(), response.getBody().data().email());
     }
 
     @Test

@@ -1,0 +1,29 @@
+meta {
+  name: CREATE CLIENT
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/v1.0.0/clients
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "number" : "123",
+    "zipCode" : "122",
+    "city" : "Rio",
+    "street" : "Marechal fontenelle",
+    "name" : "wallace",
+    "state" : "Rio",
+    "complement" : "vila",
+    "email" : "waac@mai.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

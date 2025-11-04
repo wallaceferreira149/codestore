@@ -1,0 +1,29 @@
+meta {
+  name: FIND ONE CLIENT
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/api/v1.0.0/clients/2
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "number" : "123",
+    "zipCode" : "122",
+    "city" : "Rio",
+    "street" : "Marechal fontenelle",
+    "name" : "wallace",
+    "state" : "Rio",
+    "complement" : "vila",
+    "email" : "waac@mai.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

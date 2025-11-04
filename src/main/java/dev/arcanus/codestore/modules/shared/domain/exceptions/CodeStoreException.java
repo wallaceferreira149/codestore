@@ -5,6 +5,10 @@ import org.springframework.http.ProblemDetail;
 
 public class CodeStoreException extends RuntimeException {
 
+    public CodeStoreException(String message) {
+        super(message);
+    }
+
     /**
      * Convert the exception to a ProblemDetail object.
      * @return A ProblemDetail object that represents the exception.

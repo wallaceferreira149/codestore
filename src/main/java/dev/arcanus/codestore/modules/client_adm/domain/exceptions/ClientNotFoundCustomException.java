@@ -9,7 +9,8 @@ public class ClientNotFoundCustomException extends CodeStoreException
      private String detail;
 
     public ClientNotFoundCustomException(String detail) {
-         this.detail = detail;
+        super(detail);
+        this.detail = detail;
      }
 
      @Override

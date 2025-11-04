@@ -35,8 +35,8 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client findByEmail(String email) {
-        return null;
+    public Optional<ClientModel> findByEmail(String email) {
+        return this.jpaAdapter.findByEmail(email);
     }
 
     @Override
