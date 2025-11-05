@@ -6,18 +6,23 @@ import org.springframework.http.ProblemDetail;
 
 public class ClientNotFoundCustomException extends CodeStoreException
  {
-     private String detail;
+     private String title;
+     private String message = this.getMessage();
 
-    public ClientNotFoundCustomException(String detail) {
-        super(detail);
-        this.detail = detail;
+    public ClientNotFoundCustomException(String title, String message) {
+        super(message);
+        this.title = title;
+     }
+
+     public ClientNotFoundCustomException(String title) {
+        this(title, title);
      }
 
      @Override
         public ProblemDetail toProblemDetail() {
             ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
-            problemDetail.setTitle("Client Not Found");
-            problemDetail.setDetail(this.detail);
+            problemDetail.setTitle(title);
+            problemDetail.setDetail(this.message);
             return problemDetail;
         }
 }

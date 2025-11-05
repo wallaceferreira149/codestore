@@ -89,8 +89,6 @@ public class ClientController {
 
             return ResponseEntity.ok(ApiResponse.success("Client found successfully", data, uri));
         } catch (ResourceNotFoundCustomException e) {
-//            ProblemDetail data = e.toProblemDetail();
-//            data.setDetail(e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                     ApiResponse.error("Client not found", e.toProblemDetail(), null)
             );

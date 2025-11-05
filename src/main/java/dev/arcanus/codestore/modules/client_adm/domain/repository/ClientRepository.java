@@ -8,12 +8,13 @@ import java.util.Optional;
 
 public interface ClientRepository {
 
-    Client add(Client client);
+    ClientModel add(ClientModel client);
     Client find(Long id);
     Optional<ClientModel> findByEmail(String email);
     List<Client> findAll();
     void update(Client client, Long id);
     void delete(Long id);
     boolean isClientExists(Long id);
+    boolean isClientEmailExists(String email);
     void clear();
 }

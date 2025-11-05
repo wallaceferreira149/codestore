@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface ClientRepositoryJpaAdapter extends JpaRepository<ClientModel, Long> {
 
     Optional<ClientModel> findByEmail(String email);
+    Boolean existsByEmail(String email);
 }

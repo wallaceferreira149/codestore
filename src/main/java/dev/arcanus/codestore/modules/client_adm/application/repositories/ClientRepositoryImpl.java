@@ -20,10 +20,8 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client add(Client client) {
-        ClientModel model = ClientMapper.entityToModel(client);
-        ClientModel savedClient = this.jpaAdapter.save(model);
-        return ClientMapper.modelToEntity(savedClient);
+    public ClientModel add(ClientModel client) {
+        return this.jpaAdapter.save(client);
     }
 
     @Override
@@ -57,6 +55,11 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public boolean isClientExists(Long id) {
         return this.jpaAdapter.existsById(id);
+    }
+
+    @Override
+    public boolean isClientEmailExists(String email) {
+        return this.jpaAdapter.existsByEmail(email);
     }
 
     @Override

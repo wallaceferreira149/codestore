@@ -1,10 +1,6 @@
 package dev.arcanus.codestore.modules.client_adm.application.use_cases;
 
-import dev.arcanus.codestore.modules.client_adm.application.models.ClientModel;
 import dev.arcanus.codestore.modules.client_adm.application.repositories.ClientRepositoryImpl;
-import dev.arcanus.codestore.modules.client_adm.domain.entities.Client;
-import dev.arcanus.codestore.modules.client_adm.domain.repository.ClientRepository;
-import dev.arcanus.codestore.modules.client_adm.domain.value_objects.Address;
 import dev.arcanus.codestore.modules.shared.domain.exceptions.ResourceNotFoundCustomException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

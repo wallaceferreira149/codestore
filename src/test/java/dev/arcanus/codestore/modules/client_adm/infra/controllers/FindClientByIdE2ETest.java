@@ -2,6 +2,7 @@ package dev.arcanus.codestore.modules.client_adm.infra.controllers;
 
 import dev.arcanus.codestore.modules.client_adm.application.repositories.ClientRepositoryImpl;
 import dev.arcanus.codestore.modules.client_adm.domain.entities.Client;
+import dev.arcanus.codestore.modules.client_adm.domain.factory.ClientFactory;
 import dev.arcanus.codestore.modules.client_adm.domain.value_objects.Address;
 import dev.arcanus.codestore.modules.client_adm.infra.dtos.AddClientInputDto;
 import dev.arcanus.codestore.modules.client_adm.infra.dtos.ClientOutputDto;
@@ -29,25 +30,13 @@ class FindClientByIdE2ETest {
     @BeforeEach
     void setUp() {
         this.clientRepository.clear();
-        client = new Client(
-                1L,
-                "John Doe",
-                "jhon@mail.com",
-                new Address(
-                        "Some Street",
-                        "123",
-                        "Apt 4",
-                        "Some City",
-                        "Some State",
-                        "12345-678"
-                )
-        );
+
     }
 
     @Test
     @DisplayName("Deve encontrar um cliente quando ID existir")
     void shouldFindOneClientWhenIdExists() {
-        this.clientRepository.add(client);
+        this.clientRepository.add(ClientFactory.createModel());
         ResponseEntity<ApiResponse<?>> response = this.clientController.findOneClient(client.getId());
 
         assertEquals(200, response.getStatusCode().value());
